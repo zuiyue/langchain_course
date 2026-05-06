@@ -1,0 +1,1 @@
+conda create -p D:\workspace\python\langchain_env python=3.12
