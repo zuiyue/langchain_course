@@ -12,16 +12,6 @@ model = init_chat_model(
     base_url=DEEPSEEK_BASE_URL
 )
 
-# @tool
-# def get_user_profile(user_name:str)->str:
-#     """根据用户名获取用户信息"""
-#
-#     profiles={
-#         "张三":"张三精通python ai运用开发",
-#         "李四":"喜欢使用langchain进行研发"
-#     }
-#
-#     return profiles.get(user_name,f"没有该用户信息")
 
 
 checkpointer=InMemorySaver()
