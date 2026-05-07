@@ -3,7 +3,7 @@ from langchain.chat_models import init_chat_model
 from langgraph.checkpoint.redis import RedisSaver
 from pydantic import BaseModel, Field
 
-from my_tool.env_utils import DEEPSEEK_API_KEY, DEEPSEEK_BASE_URL
+from my_tool.env_utils import DEEPSEEK_API_KEY, DEEPSEEK_BASE_URL, ZHIPU_API_KEY, ZHIPU_BASE_URL
 
 # model = init_chat_model(
 #     model="deepseek:deepseek-chat",
@@ -15,16 +15,10 @@ from my_tool.env_utils import DEEPSEEK_API_KEY, DEEPSEEK_BASE_URL
 model = init_chat_model(
           model="glm-5.1",
           model_provider="openai",  # 使用 openai 兼容
-    api_key="5682400d8f5d4c9a84c90fa72808f3ea.orO4zwlNHAAHG5Bx",
-          base_url="https://open.bigmodel.cn/api/paas/v4/",
+          api_key=ZHIPU_API_KEY,
+          base_url=ZHIPU_BASE_URL,
          temperature=0.7,
       )
-# model = init_chat_model(
-#           model="glm-5.1",
-#             model_provider="zhipuai",
-#           api_key="5682400d8f5d4c9a84c90fa72808f3ea.orO4zwlNHAAHG5Bx",
-#     base_url="https://open.bigmodel.cn/api/paas/v4/"
-#       )
 
 
 class ConactInfo(BaseModel):
