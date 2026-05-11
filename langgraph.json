@@ -1,0 +1,9 @@
+{
+  "$schema": "https://langgra.ph/schema.json",
+  "dependencies": ["."],
+  "graphs": {
+    "agent": "./runtime/04_runtime_server_info.py:agent"
+  },
+  "env": ".env"
+
+}

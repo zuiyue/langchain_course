@@ -1,0 +1,86 @@
+
+
+from fastmcp import FastMCP
+
+mcp = FastMCP("BasicDemo")
+
+
+@mcp.tool()
+def say_hello(name:str)->str:
+    """打招呼"""
+    print("Hello, world!")
+    return f"Hello, {name}"
+
+
+@mcp.tool()
+def say_bye(name:str)->str:
+    """说再见"""
+    print("Hello, world!")
+    return f"Bye, {name}"
+
+
+@mcp.resource("file:///111111")
+def say_hello() -> str:
+    """返回协议内容"""
+
+    return """
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    MCP 传输协议                              │
+├─────────────────┬───────────────────┬───────────────────────┤
+│     服务端       │      客户端        │        说明           │
+├─────────────────┼───────────────────┼───────────────────────┤
+│                 │                   │                       │
+│  --transport    │  transport="http" │  ✅ 正确匹配          │
+│  streamable-http│ transport="streamable-http"  │  官方文档推荐         │
+│                 │                   │                       │
+├─────────────────┼───────────────────┼───────────────────────┤
+│                 │                   │                       │
+│  --transport    │  transport="sse"  │  ✅ 正确匹配          │
+│  sse            │                   │  服务器推送场景       │
+│                 │                   │                       │
+├─────────────────┼───────────────────┼───────────────────────┤
+│                 │                   │                       │
+│  (默认)         │  transport="stdio"│  ✅ 正确匹配          │
+│  直接运行        │  command="python" │  本地开发场景         │
+│                 │  args=["..."]     │  客户端自动启动服务器 │
+└─────────────────┴───────────────────┴───────────────────────┘
+```
+
+    """
+
+
+@mcp.resource("file:///222222")
+def say_hello1() -> str:
+    """返回协议内容"""
+
+    return """
+222222
+
+    """
+
+@mcp.prompt()
+def code_review(language:str)->str:
+
+    """代码审查提示词"""
+
+    return f"你是一个专业的代码审查专家。请审核如何{language}代码"
+
+
+
+@mcp.prompt()
+def tool_review(toolname:str)->str:
+
+    """工具审查提示词"""
+
+    return f"你是一个专业的工具审查专家。请审核如何{toolname}的安全性"
+
+
+
+if __name__ == "__main__":
+    mcp.run(
+        host="0.0.0.0",
+        port=8080,
+        transport="sse"
+    )

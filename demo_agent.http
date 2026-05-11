@@ -1,0 +1,40 @@
+### LangGraph Server 模拟 - 运行 Agent（带用户认证）
+POST http://localhost:2024/runs
+Content-Type: application/json
+Authorization: Bearer demo-token-123
+
+{
+  "input": {
+    "messages": [{"role": "user", "content": "你好"}]
+  },
+  "context": {
+    "user_name": "1"
+  }
+}
+
+### LangGraph Server 模拟 - 运行 Agent（管理员认证）
+POST http://localhost:2024/runs
+Content-Type: application/json
+Authorization: Bearer admin-token-456
+
+{ 
+  "input": {
+    "messages": [{"role": "user", "content": "你好"}]
+  },
+  "context": {
+    "user_name": "2"
+  }
+}
+
+### LangGraph Server 模拟 - 运行 Agent（无用户认证，应返回 401）
+POST http://localhost:2024/runs
+Content-Type: application/json
+
+{
+  "input": {
+    "messages": [{"role": "user", "content": "你好"}]
+  },
+  "context": {
+    "user_name": "2"
+  }
+}
